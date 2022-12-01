@@ -5,10 +5,6 @@
     android:icon="@drawable/home_icon"
     android:title="@string/action_home"/>
     <item
-        android:id="@+id/action_about"
-        android:icon="@drawable/info_icon"
-        android:title="About"/>
-    <item
         android:id="@+id/action_cart"
         android:icon="@drawable/cart_icon"
         android:title="@string/action_cart"/>
