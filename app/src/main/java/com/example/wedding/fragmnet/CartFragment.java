@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.wedding.BaseFragment;
 import com.example.wedding.R;
 import com.example.wedding.databinding.FragmentCartBinding;
 
-public class CartFragment extends Fragment {
+public class CartFragment extends BaseFragment {
     private FragmentCartBinding binding = null;
     public CartFragment() {
         // Required empty public constructor
@@ -36,5 +37,15 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
+    @Override
+    public void listening() {
+
     }
 }

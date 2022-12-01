@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.wedding.BaseFragment;
 import com.example.wedding.R;
 import com.example.wedding.databinding.FragmentHomeBinding;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     private FragmentHomeBinding binding = null;
 
     public HomeFragment() {
@@ -38,5 +39,15 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
+    @Override
+    public void listening() {
+
     }
 }

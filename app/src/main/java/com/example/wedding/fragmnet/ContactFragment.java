@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.wedding.BaseFragment;
 import com.example.wedding.R;
 import com.example.wedding.databinding.FragmentContactBinding;
 
-public class ContactFragment extends Fragment {
+public class ContactFragment extends BaseFragment {
     private FragmentContactBinding binding = null;
     public ContactFragment() {
         // Required empty public constructor
@@ -36,5 +37,15 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentContactBinding.inflate(inflater,container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
+    @Override
+    public void listening() {
+
     }
 }

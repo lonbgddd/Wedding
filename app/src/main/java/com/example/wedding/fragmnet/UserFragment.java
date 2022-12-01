@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.wedding.BaseFragment;
 import com.example.wedding.R;
 import com.example.wedding.databinding.FragmentUserBinding;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends BaseFragment {
     private FragmentUserBinding binding = null;
     public UserFragment() {
         // Required empty public constructor
@@ -37,5 +38,15 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentUserBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
+    @Override
+    public void listening() {
+
     }
 }
