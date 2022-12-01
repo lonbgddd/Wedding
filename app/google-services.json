@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "154270597306",
+    "project_id": "wedding-ff403",
+    "storage_bucket": "wedding-ff403.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154270597306:android:5ac11193e7902e380c4283",
+        "android_client_info": {
+          "package_name": "com.example.wedding"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154270597306-hm23grl9dct6gj23e9jr7p33ga5rijoq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wedding",
+            "certificate_hash": "c2a8596349a819fbce728b5b636ae40b5dffb392"
+          }
+        },
+        {
+          "client_id": "154270597306-khj4bjok6jvlh6tmq2i0bd6cr4cu11a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASRKZDAc1cXYfZGKMmICspLR2pOGRlZ6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154270597306-khj4bjok6jvlh6tmq2i0bd6cr4cu11a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
