@@ -1,4 +1,4 @@
-package com.example.wedding.fragmnet;
+package com.example.wedding.fragmnet.home;
 
 import android.os.Bundle;
 
@@ -12,22 +12,18 @@ import android.view.ViewGroup;
 
 import com.example.wedding.BaseFragment;
 import com.example.wedding.R;
-import com.example.wedding.databinding.FragmentHomeBinding;
-import com.example.wedding.fragmnet.home.DichVuFragment;
-import com.example.wedding.fragmnet.home.KhongGianFragment;
-import com.example.wedding.fragmnet.home.ThucDonFragment;
+import com.example.wedding.databinding.FragmentThucdonBinding;
 
-
-public class HomeFragment extends BaseFragment {
-    private FragmentHomeBinding binding = null;
-
-    public HomeFragment() {
+public class ThucDonFragment extends BaseFragment {
+    private FragmentThucdonBinding binding = null;
+    public ThucDonFragment() {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static ThucDonFragment newInstance() {
+        ThucDonFragment fragment = new ThucDonFragment();
         Bundle args = new Bundle();
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,7 +38,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        // Inflate the layout for this fragment
+        binding = FragmentThucdonBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -59,14 +56,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void listening() {
-        binding.imageView20.setOnClickListener(v -> {
-            replaceFragment(ThucDonFragment.newInstance());
-        });
-        binding.imageView21.setOnClickListener(v -> {
-            replaceFragment(DichVuFragment.newInstance());
-        });
-        binding.imageView22.setOnClickListener(v -> {
-            replaceFragment(KhongGianFragment.newInstance());
-        });
+        binding.imgBack.setOnClickListener(v -> backStack());
     }
 }
