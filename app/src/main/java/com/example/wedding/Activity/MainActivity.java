@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.example.wedding.Adapter.PopularAdapter;
 import com.example.wedding.Domain.Popular;
+import com.example.wedding.Helper.Sqldatabase;
 import com.example.wedding.R;
 import com.example.wedding.databinding.ActivityMainBinding;
 import com.example.wedding.fragmnet.CartFragment;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportFragmentManager().beginTransaction().add(R.id.fade_control, HomeFragment.newInstance()).commit();
 
+        Sqldatabase sqldatabase = new Sqldatabase(this);
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
