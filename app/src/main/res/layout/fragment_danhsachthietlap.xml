@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#AA8B56"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#AA8B56">
 
     <ImageButton
         android:id="@+id/img_back"
@@ -17,10 +17,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="THIẾT LẬP CHO TIỆC"
+        android:text="DANH SÁCH ĐÃ THIẾT LẬP"
         android:textColor="@color/white"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -126,12 +127,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_ok"
+        android:id="@+id/btn_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:background="@drawable/bg_btn_danhsach"
-        android:text="HOÀN TẤT"
+        android:text="TRỞ VỀ TRANG CHỦ"
         android:layout_marginHorizontal="32dp"
         android:textColor="@color/white"
         android:textStyle="bold"
