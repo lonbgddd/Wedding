@@ -39,19 +39,10 @@ public class Sqldatabase extends SQLiteOpenHelper {
 
         String createTableDichvu = "create table Dichvu(" +
                 "Id_dichvu INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Khonggiantiec INTEGER NOT NULL," +
                 "Ten TEXT NOT NULL," +
                 "DanhGia TEXT NOT NULL," +
                 "Anh TEXT NOT NULL)";
         db.execSQL(createTableDichvu);
-
-        String createTableTiec = "create table Tiec(" +
-                "Id_tiec INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Tentiec INTEGER NOT NULL," +
-                "Tenkhonggian INTEGER NOT NULL," +
-                "DanhGia TEXT NOT NULL," +
-                "Monan INTEGER NOT NULL)";
-        db.execSQL(createTableTiec);
 
         String createThietlap = "create table Thietlap(" +
                 "Id_thietlap INTEGER PRIMARY KEY AUTOINCREMENT," +
