@@ -61,10 +61,10 @@ public class KhonggiantiecDao {
         Cursor cursor = db.rawQuery(sql, selectionArgs);
         while (cursor.moveToNext()) {
             Khonggiantiec khonggiantiec = new Khonggiantiec();
-            khonggiantiec.Id_khonggiantiec = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_monan")));
-            khonggiantiec.Tenkhonggian = cursor.getString(cursor.getColumnIndex("Tenmon"));
+            khonggiantiec.Id_khonggiantiec = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_khonggiantiec")));
+            khonggiantiec.Tenkhonggian = cursor.getString(cursor.getColumnIndex("Tenkhonggian"));
             khonggiantiec.Anh = cursor.getString(cursor.getColumnIndex("Anh"));
-
+            khonggiantiec.setReview(cursor.getString(cursor.getColumnIndex("DanhGia")));
             list.add(khonggiantiec);
         }
         return list;

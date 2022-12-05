@@ -22,19 +22,18 @@ import com.example.wedding.Domain.Thietlap;
 import com.example.wedding.R;
 import com.example.wedding.dao.ThietLapDao;
 import com.example.wedding.databinding.BottomDeleteBinding;
-import com.example.wedding.databinding.FragmentCartBinding;
-import com.example.wedding.databinding.FragmentThietlaptiecBinding;
-import com.example.wedding.databinding.SaleBottomBinding;
+import com.example.wedding.databinding.FragmentDanhsachthietlapBinding;
 
-public class CartFragment extends BaseFragment implements ThietLapAdapter.CallBack {
-    private FragmentThietlaptiecBinding binding = null;
+public class DanhSachFragment extends BaseFragment implements ThietLapAdapter.CallBack {
+    private FragmentDanhsachthietlapBinding binding = null;
     ThietLapAdapter thietLapAdapter;
-    public CartFragment() {
+    public DanhSachFragment() {
         // Required empty public constructor
     }
-    public static CartFragment newInstance() {
-        CartFragment fragment = new CartFragment();
-        Bundle args = new Bundle();;
+
+    public static DanhSachFragment newInstance() {
+        DanhSachFragment fragment = new DanhSachFragment();
+        Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,15 +41,12 @@ public class CartFragment extends BaseFragment implements ThietLapAdapter.CallBa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = FragmentThietlaptiecBinding.inflate(inflater, container, false);
+        binding = FragmentDanhsachthietlapBinding.inflate(inflater,container,false);
         return binding.getRoot();
     }
 
@@ -63,33 +59,13 @@ public class CartFragment extends BaseFragment implements ThietLapAdapter.CallBa
     @Override
     public void loadData() {
         ThietLapDao thietLapDao = new ThietLapDao(requireContext());
-        thietLapAdapter  = new ThietLapAdapter(thietLapDao.getAll(), CartFragment.this);
-        if (thietLapDao.getAll().size() == 0){
-            binding.rcv.setVisibility(View.GONE);
-            binding.btnOk.setVisibility(View.GONE);
-            binding.showInfor.setVisibility(View.VISIBLE);
-        } else if(thietLapDao.getAll().size() <= 3){
-            binding.rcv.setVisibility(View.VISIBLE);
-            binding.btnOk.setVisibility(View.VISIBLE);
-            binding.showInfor.setVisibility(View.GONE);
-        }
+        thietLapAdapter  = new ThietLapAdapter(thietLapDao.getAll(), DanhSachFragment.this);
         binding.rcv.setAdapter(thietLapAdapter);
-
     }
-
 
     @Override
     public void listening() {
-        binding.btnOk.setOnClickListener(v -> {
-            ThietLapDao thietLapDao = new ThietLapDao(requireContext());
-            if (thietLapDao.getAll().size() <3){
-                Toast.makeText(requireContext(), "Bạn chưa chọn đủ thông tin", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            thietLapDao.deleteTable();
-            loadData();
-            Toast.makeText(requireContext(), "Thiết Lập Danh Sách Thành công", Toast.LENGTH_SHORT).show();
-        });
+        binding.imgBack.setOnClickListener(v -> backStack());
     }
 
     @Override

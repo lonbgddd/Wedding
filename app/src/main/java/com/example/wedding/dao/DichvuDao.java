@@ -33,7 +33,7 @@ public class DichvuDao {
     public int update(Dichvu dichvu) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("Id_dichvu", dichvu.Id_dichvu);
-        contentValues.put("Ten khong gian", dichvu.Khonggiantiec);
+        contentValues.put("Tenkhonggian", dichvu.Khonggiantiec);
         contentValues.put("Ten", dichvu.Ten);
         contentValues.put("Anh", dichvu.Anh);
         return db.update("Dichvu", contentValues, "Id_dichvu=?", new String[]{String.valueOf(dichvu.Id_dichvu)});
@@ -63,8 +63,8 @@ public class DichvuDao {
         while (cursor.moveToNext()) {
             Dichvu dichvu = new Dichvu();
             dichvu.Id_dichvu = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_dichvu")));
-            dichvu.Khonggiantiec = cursor.getString(cursor.getColumnIndex("Khonggiantiec"));
-            dichvu.Ten = cursor.getString(cursor.getColumnIndex("Ten"));
+            dichvu.Khonggiantiec = cursor.getString(cursor.getColumnIndex("Ten"));
+            dichvu.Ten = cursor.getString(cursor.getColumnIndex("DanhGia"));
             dichvu.Anh = cursor.getString(cursor.getColumnIndex("Anh"));
             list.add(dichvu);
         }
