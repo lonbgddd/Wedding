@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class HomeFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
+
     }
 
     @Override
@@ -54,7 +56,10 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-
+        Log.d("TAG", "loadData: "+R.drawable.listmon1);
+        Log.d("TAG", "loadData: "+R.drawable.listmon2);
+        Log.d("TAG", "loadData: "+R.drawable.listmon3);
+////        Log.d("TAG", "loadData: "+R.drawable.sanh4);
     }
 
     @Override

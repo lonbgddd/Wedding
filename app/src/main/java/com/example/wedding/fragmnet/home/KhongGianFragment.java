@@ -1,21 +1,34 @@
 package com.example.wedding.fragmnet.home;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.wedding.BaseFragment;
+import com.example.wedding.Domain.Khonggiantiec;
+import com.example.wedding.Domain.Thietlap;
 import com.example.wedding.R;
+import com.example.wedding.dao.KhonggiantiecDao;
+import com.example.wedding.dao.ThietLapDao;
 import com.example.wedding.databinding.FragmentKhonggiantiecBinding;
+import com.example.wedding.databinding.SaleBottomBinding;
 
 
-public class KhongGianFragment extends BaseFragment {
+public class KhongGianFragment extends BaseFragment implements KhongGianAdapter.CallBack {
     private FragmentKhonggiantiecBinding binding = null;
     public KhongGianFragment() {
         // Required empty public constructor
@@ -50,11 +63,52 @@ public class KhongGianFragment extends BaseFragment {
 
     @Override
     public void loadData() {
+        KhonggiantiecDao khonggiantiecDao = new KhonggiantiecDao(requireContext());
+        KhongGianAdapter khongGianAdapter = new KhongGianAdapter(khonggiantiecDao.getAll() , KhongGianFragment.this);
+        binding.rcvList.setAdapter(khongGianAdapter);
+        binding.searchKhonggiantiec.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                khongGianAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                khongGianAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
 
     }
 
     @Override
     public void listening() {
         binding.imgBack.setOnClickListener(v -> backStack());
+    }
+
+    @Override
+    public void OnClick(Khonggiantiec khonggiantiec) {
+        final Dialog dialog = new Dialog(requireContext());
+        SaleBottomBinding bindingDialog = SaleBottomBinding.inflate(LayoutInflater.from(requireContext()));
+        dialog.setContentView(bindingDialog.getRoot());
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.gravity = Gravity.BOTTOM;
+        window.setAttributes(layoutParams);
+
+        bindingDialog.txTitle.setText(khonggiantiec.getTenkhonggian());
+        bindingDialog.txDescription.setText(khonggiantiec.getReview());
+        bindingDialog.imgItem.setImageResource(Integer.parseInt(khonggiantiec.getAnh()));
+        bindingDialog.cancelBtn.setOnClickListener(v -> dialog.cancel());
+        bindingDialog.addBtn.setOnClickListener(v -> {
+            ThietLapDao thietLapDao = new ThietLapDao(requireContext());
+            thietLapDao.insert(new Thietlap(1,khonggiantiec.getTenkhonggian(), khonggiantiec.Review, khonggiantiec.getAnh()));
+            Toast.makeText(requireContext(), "Thiết lập thành công", Toast.LENGTH_SHORT).show();
+            dialog.cancel();
+        });
+        dialog.show();
     }
 }

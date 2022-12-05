@@ -25,7 +25,7 @@ public class MonanDao {
         //   contentValues.put("Id", monan.Id_monan);
         contentValues.put("Ten mon", monan.Tenmon);
         contentValues.put("Anh", monan.Anh);
-        contentValues.put("Gia", monan.Gia);
+        contentValues.put("Gia", monan.DanhGia);
 
         return db.insert("Monan", null, contentValues);
     }
@@ -35,7 +35,7 @@ public class MonanDao {
         contentValues.put("Id", monan.Id_monan);
         contentValues.put("Ten mon", monan.Tenmon);
         contentValues.put("Anh", monan.Anh);
-        contentValues.put("Gia", monan.Gia);
+        contentValues.put("Gia", monan.DanhGia);
         return db.update("Monan", contentValues, "Id_monan=?", new String[]{String.valueOf(monan.Id_monan)});
     }
 
@@ -44,7 +44,7 @@ public class MonanDao {
     }
 
     public List<Monan> getAll() {
-        String sql = "select * from Monan";
+        String sql = "SELECT * FROM Monan";
         return getData(sql);
     }
 
@@ -63,9 +63,9 @@ public class MonanDao {
         while (cursor.moveToNext()) {
             Monan monan = new Monan();
             monan.Id_monan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_monan")));
-            monan.Tenmon = cursor.getString(cursor.getColumnIndex("Tenmon"));
+            monan.Tenmon = cursor.getString(cursor.getColumnIndex("TenMon"));
             monan.Anh = cursor.getString(cursor.getColumnIndex("Anh"));
-            monan.Gia = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Gia")));
+            monan.DanhGia = cursor.getString(cursor.getColumnIndex("DanhGia"));
             list.add(monan);
         }
         return list;

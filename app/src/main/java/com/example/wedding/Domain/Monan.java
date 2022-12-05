@@ -4,16 +4,16 @@ public class Monan {
     public int Id_monan;
     public String Tenmon;
     public String Anh;
-    public int Gia;
+    public String DanhGia;
 
     public Monan() {
     }
 
-    public Monan(int id_monan, String tenmon, String anh, int gia) {
+    public Monan(int id_monan, String tenmon, String anh, String gia) {
         Id_monan = id_monan;
         Tenmon = tenmon;
         Anh = anh;
-        Gia = gia;
+        DanhGia = gia;
     }
 
     public int getId_monan() {
@@ -40,11 +40,11 @@ public class Monan {
         Anh = anh;
     }
 
-    public int getGia() {
-        return Gia;
+    public String getDanhGia() {
+        return DanhGia;
     }
 
-    public void setGia(int gia) {
-        Gia = gia;
+    public void setDanhGia(String danhGia) {
+        DanhGia = danhGia;
     }
 }

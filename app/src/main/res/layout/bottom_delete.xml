@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:background="@color/purple_500"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_baseline_add_shopping_cart_24"
+            android:src="@drawable/ic_baseline_delete_forever_24"
             app:tint="@android:color/white"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -50,17 +50,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="#BF4D74"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgItem"
             android:layout_width="138dp"
             android:layout_height="145dp"
-            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-         />
+            app:srcCompat="@drawable/demo" />
 
         <TextView
             android:id="@+id/txTitle"
@@ -69,7 +67,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:text="TextView"
-            android:textColor="#fff"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imgItem"
@@ -82,7 +80,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:text="abcdddddddd"
-            android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txTitle"
             app:layout_constraintTop_toBottomOf="@+id/txTitle" />
