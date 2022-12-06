@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.wedding.Domain.Monan;
+import com.example.wedding.Domain.Foods;
 import com.example.wedding.Helper.Sqldatabase;
 
 import java.util.ArrayList;
@@ -20,52 +20,35 @@ public class MonanDao {
         db = sqldatabase.getWritableDatabase();
     }
 
-    public long insert(Monan monan) {
+    public long insert(Foods monan) {
         ContentValues contentValues = new ContentValues();
-        //   contentValues.put("Id", monan.Id_monan);
-        contentValues.put("Ten mon", monan.Tenmon);
-        contentValues.put("Anh", monan.Anh);
-        contentValues.put("Gia", monan.DanhGia);
+           contentValues.put("Id_food", monan.Id_food);
+        contentValues.put("Name", monan.Name);
+        contentValues.put("Image", monan.Image);
+        contentValues.put("Review", monan.Review);
 
-        return db.insert("Monan", null, contentValues);
-    }
-
-    public int update(Monan monan) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Id", monan.Id_monan);
-        contentValues.put("Ten mon", monan.Tenmon);
-        contentValues.put("Anh", monan.Anh);
-        contentValues.put("Gia", monan.DanhGia);
-        return db.update("Monan", contentValues, "Id_monan=?", new String[]{String.valueOf(monan.Id_monan)});
+        return db.insert("Foods", null, contentValues);
     }
 
     public int delete(String id) {
-        return db.delete("Monan", "Id_monan=?", new String[]{id});
+        return db.delete("Foods", "Id_food=?", new String[]{id});
     }
 
-    public List<Monan> getAll() {
-        String sql = "SELECT * FROM Monan";
+    public List<Foods> getAll() {
+        String sql = "SELECT * FROM Foods";
         return getData(sql);
     }
 
-    public Monan getID(String id) {
-        String sql = "select * from Sach where Id_monan=?";
-        List<Monan> list2 = new ArrayList<>();
-        list2 = getData(sql, id);
-        return list2.get(0);
-
-    }
-
     @SuppressLint("Range")
-    private List<Monan> getData(String sql, String... selectionArgs) {
-        List<Monan> list = new ArrayList<>();
+    private List<Foods> getData(String sql, String... selectionArgs) {
+        List<Foods> list = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, selectionArgs);
         while (cursor.moveToNext()) {
-            Monan monan = new Monan();
-            monan.Id_monan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_monan")));
-            monan.Tenmon = cursor.getString(cursor.getColumnIndex("TenMon"));
-            monan.Anh = cursor.getString(cursor.getColumnIndex("Anh"));
-            monan.DanhGia = cursor.getString(cursor.getColumnIndex("DanhGia"));
+            Foods monan = new Foods();
+            monan.Id_food = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_food")));
+            monan.Name = cursor.getString(cursor.getColumnIndex("Name"));
+            monan.Image = cursor.getString(cursor.getColumnIndex("Image"));
+            monan.Review = cursor.getString(cursor.getColumnIndex("Review"));
             list.add(monan);
         }
         return list;

@@ -1,7 +1,6 @@
 package com.example.wedding.fragmnet.home;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -12,26 +11,25 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wedding.Domain.Dichvu;
-import com.example.wedding.Domain.Khonggiantiec;
+import com.example.wedding.Domain.Service;
 import com.example.wedding.databinding.ItemListdvBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.ViewHolder> implements Filterable {
-    List<Dichvu> list;
-    List<Dichvu> listOld;
+    List<Service> list;
+    List<Service> listOld;
     CallBack callBack;
     ConstraintLayout layout;
-    public DichVuAdapter(List<Dichvu> list, CallBack callBack) {
+    public DichVuAdapter(List<Service> list, CallBack callBack) {
         this.list = list;
         this.callBack = callBack;
         this.listOld = list;
     }
 
     interface CallBack {
-        void OnClick(Dichvu dichvu);
+        void OnClick(Service dichvu);
     }
 
     @NonNull
@@ -42,7 +40,7 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Dichvu dichvu = listOld.get(position);
+        Service dichvu = listOld.get(position);
         if (dichvu == null){
             return;
         } else
@@ -63,9 +61,9 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.ViewHolder
                 if (strName.isEmpty()) {
                     listOld = list;
                 } else {
-                    List<Dichvu> listBien = new ArrayList<>();
-                    for (Dichvu model : list) {
-                        if (model.getKhonggiantiec().toLowerCase().contains(strName.toLowerCase())) {
+                    List<Service> listBien = new ArrayList<>();
+                    for (Service model : list) {
+                        if (model.getReview().toLowerCase().contains(strName.toLowerCase())) {
                             listBien.add(model);
                         }
                     }
@@ -78,7 +76,7 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.ViewHolder
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                listOld = (List<Dichvu>) results.values;
+                listOld = (List<Service>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -95,9 +93,9 @@ public class DichVuAdapter extends RecyclerView.Adapter<DichVuAdapter.ViewHolder
             layout = binding.layout;
         }
 
-        void initData(Dichvu dichvu){
-            ten.setText(dichvu.getKhonggiantiec());
-            anh.setImageResource(Integer.parseInt(dichvu.getAnh()));
+        void initData(Service dichvu){
+            ten.setText(dichvu.getName());
+            anh.setImageResource(Integer.parseInt(dichvu.getImage()));
             layout.setOnClickListener(v -> callBack.OnClick(dichvu));
         }
     }

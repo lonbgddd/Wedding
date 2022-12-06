@@ -4,12 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.wedding.Domain.Monan;
-
 public class Sqldatabase extends SQLiteOpenHelper {
 
     public static final String dbName = "wedding.db";
-    public static final int dbVersion = 3;
+    public static final int dbVersion = 1;
 
     public Sqldatabase(Context context) {
         super(context, dbName, null, dbVersion);
@@ -21,25 +19,26 @@ public class Sqldatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableMonan = "create table Monan(" +
-                "Id_monan INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "TenMon TEXT NOT NULL," +
-                "Anh TEXT NOT NULL," +
-                "DanhGia TEXT NOT NULL)";
+        String createTableMonan = "create table Foods(" +
+                "Id_food INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "Name TEXT NOT NULL," +
+                "Image TEXT NOT NULL," +
+                "Review TEXT NOT NULL)";
         db.execSQL(createTableMonan);
 
-        String createTableKhonggiantiec = "create table Khonggiantiec(" +
-                "Id_khonggiantiec INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Tenkhonggian TEXT NOT NULL," +
-                "DanhGia TEXT NOT NULL," +
-                "Anh TEXT NOT NULL)";
+        String createTableKhonggiantiec = "create table Space(" +
+                "Id_space INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "Name TEXT NOT NULL," +
+                "Review TEXT NOT NULL," +
+                "Image TEXT NOT NULL)";
         db.execSQL(createTableKhonggiantiec);
 
-        String createTableDichvu = "create table Dichvu(" +
-                "Id_dichvu INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Ten TEXT NOT NULL," +
-                "DanhGia TEXT NOT NULL," +
-                "Anh TEXT NOT NULL)";
+        String createTableDichvu = "create table Service(" +
+                "Id_service INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "Name TEXT NOT NULL," +
+                "Review TEXT NOT NULL," +
+                "Date TEXT NOT NULL," +
+                "Image TEXT NOT NULL)";
         db.execSQL(createTableDichvu);
 
         String createThietlap = "create table Thietlap(" +
@@ -49,35 +48,38 @@ public class Sqldatabase extends SQLiteOpenHelper {
                 "Anh TEXT NOT NULL)";
         db.execSQL(createThietlap);
 
-        String createLuutamthoi = "create table DanhSach(" +
-                "Id_danhSach INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Title INTEGER NOT NULL," +
-                "Review TEXT NOT NULL," +
-                "Anh TEXT NOT NULL)";
-        db.execSQL(createLuutamthoi);
+//        String createLuutamthoi = "create table DanhSach(" +
+//                "Id_danhSach INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                "Title INTEGER NOT NULL," +
+//                "Review TEXT NOT NULL," +
+//                "Anh TEXT NOT NULL)";
+//        db.execSQL(createLuutamthoi);
 
-        createTableMonan = "INSERT INTO  Monan   VALUES ( 1 ,'Nguyễn Phi Long','2131165451' ,'Tốt')";
+        createTableMonan = "INSERT INTO  Foods   VALUES ( 1 ,'Nguyễn Phi Long','2131165377','Tốt')";
         db.execSQL(createTableMonan);
-        createTableMonan = "INSERT INTO  Monan   VALUES ( 2 ,'Chu van huy','2131165452' ,'Khá')";
+        createTableMonan = "INSERT INTO  Foods   VALUES ( 2 ,'Chu van huy','2131165378','Khá')";
         db.execSQL(createTableMonan);
-        createTableMonan = "INSERT INTO  Monan   VALUES ( 3 ,'Nguyễn Hoang Anh','2131165453','Trung bình')";
+        createTableMonan = "INSERT INTO  Foods   VALUES ( 3 ,'Nguyễn Hoang Anh','2131165379','Trung bình')";
         db.execSQL(createTableMonan);
 
-        createTableKhonggiantiec = "INSERT INTO  Khonggiantiec   VALUES ( 1 ,'Nguyễn Phi Long','aaa','2131165411')";
+        createTableKhonggiantiec = "INSERT INTO  Space   VALUES ( 1 ,'Nguyễn Phi Long','aaa','2131165321')";
         db.execSQL(createTableKhonggiantiec);
-        createTableKhonggiantiec = "INSERT INTO  Khonggiantiec   VALUES ( 2 ,'Chu van huy','bbbb','2131165412')";
+        createTableKhonggiantiec = "INSERT INTO  Space   VALUES ( 2 ,'Chu van huy','bbbb','2131165323')";
         db.execSQL(createTableKhonggiantiec);
-        createTableKhonggiantiec = "INSERT INTO  Khonggiantiec   VALUES ( 3 ,'Nguyễn Hoang Anh','cccc','2131165413')";
+        createTableKhonggiantiec = "INSERT INTO  Space   VALUES ( 3 ,'Nguyễn Hoang Anh','cccc','2131165325')";
         db.execSQL(createTableKhonggiantiec);
-        createTableKhonggiantiec = "INSERT INTO  Khonggiantiec   VALUES ( 4 ,'Nguyễn Hoang Anh','cccc','2131165414')";
+        createTableKhonggiantiec = "INSERT INTO  Space   VALUES ( 4 ,'Nguyễn Hoang Anh','cccc','2131165325')";
         db.execSQL(createTableKhonggiantiec);
 
-        createTableDichvu = "INSERT INTO  Dichvu  VALUES ( 1 ,'Dam cuoi','sảnh lớn' ,'2131165315')";
+        createTableDichvu = "INSERT INTO  Service  VALUES ( 1 ,'Dam cuoi','sảnh lớn','122222','2131165325')";
         db.execSQL(createTableDichvu);
-        createTableDichvu = "INSERT INTO  Dichvu   VALUES ( 2 ,'Le hoi','Hội trường' ,'2131165316')";
+        createTableDichvu = "INSERT INTO  Service   VALUES ( 2 ,'Le hoi','Hội trường','taiaiaiai','2131165327')";
         db.execSQL(createTableDichvu);
-//        createTableDichvu = "INSERT INTO  Dichvu   VALUES ( 3 ,'tot nghiep','Trường học','Khá' )";
-//        db.execSQL(createTableDichvu);
+        createTableDichvu = "INSERT INTO  Service   VALUES ( 3 ,'Sinh nhật','Hội trường','taiaiaiai','2131165408')";
+        db.execSQL(createTableDichvu);
+        createTableDichvu = "INSERT INTO  Service   VALUES ( 4 ,'Vịt Bắc Kinh','Bạn ăn thử chưa','taiaiaiai','2131165407')";
+        db.execSQL(createTableDichvu);
+
     }
 
     @Override

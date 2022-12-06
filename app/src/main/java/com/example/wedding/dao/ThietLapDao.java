@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.wedding.Domain.Dichvu;
 import com.example.wedding.Domain.Thietlap;
 import com.example.wedding.Helper.Sqldatabase;
 

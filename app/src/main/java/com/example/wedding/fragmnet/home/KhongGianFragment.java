@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,9 +18,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.wedding.BaseFragment;
-import com.example.wedding.Domain.Khonggiantiec;
+import com.example.wedding.Domain.Space;
 import com.example.wedding.Domain.Thietlap;
-import com.example.wedding.R;
 import com.example.wedding.dao.KhonggiantiecDao;
 import com.example.wedding.dao.ThietLapDao;
 import com.example.wedding.databinding.FragmentKhonggiantiecBinding;
@@ -88,7 +86,7 @@ public class KhongGianFragment extends BaseFragment implements KhongGianAdapter.
     }
 
     @Override
-    public void OnClick(Khonggiantiec khonggiantiec) {
+    public void OnClick(Space khonggiantiec) {
         final Dialog dialog = new Dialog(requireContext());
         SaleBottomBinding bindingDialog = SaleBottomBinding.inflate(LayoutInflater.from(requireContext()));
         dialog.setContentView(bindingDialog.getRoot());
@@ -99,13 +97,13 @@ public class KhongGianFragment extends BaseFragment implements KhongGianAdapter.
         layoutParams.gravity = Gravity.BOTTOM;
         window.setAttributes(layoutParams);
 
-        bindingDialog.txTitle.setText(khonggiantiec.getTenkhonggian());
+        bindingDialog.txTitle.setText(khonggiantiec.getName());
         bindingDialog.txDescription.setText(khonggiantiec.getReview());
-        bindingDialog.imgItem.setImageResource(Integer.parseInt(khonggiantiec.getAnh()));
+        bindingDialog.imgItem.setImageResource(Integer.parseInt(khonggiantiec.getImage()));
         bindingDialog.cancelBtn.setOnClickListener(v -> dialog.cancel());
         bindingDialog.addBtn.setOnClickListener(v -> {
             ThietLapDao thietLapDao = new ThietLapDao(requireContext());
-            thietLapDao.insert(new Thietlap(1,khonggiantiec.getTenkhonggian(), khonggiantiec.Review, khonggiantiec.getAnh()));
+            thietLapDao.insert(new Thietlap(1,khonggiantiec.getName(), khonggiantiec.Review, khonggiantiec.getImage()));
             Toast.makeText(requireContext(), "Thiết lập thành công", Toast.LENGTH_SHORT).show();
             dialog.cancel();
         });

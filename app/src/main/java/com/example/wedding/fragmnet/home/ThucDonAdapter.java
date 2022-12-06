@@ -11,20 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wedding.Domain.Monan;
+import com.example.wedding.Domain.Foods;
 import com.example.wedding.databinding.ItemListdsBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThucDonAdapter extends RecyclerView.Adapter<ThucDonAdapter.ViewHolder> implements Filterable {
-    List<Monan> list;
-    List<Monan> listOld;
+    List<Foods> list;
+    List<Foods> listOld;
     CallBack callBack;
     interface CallBack {
-        void OnClick(Monan monan);
+        void OnClick(Foods monan);
     }
-    public ThucDonAdapter(List<Monan> list, CallBack callBack) {
+    public ThucDonAdapter(List<Foods> list, CallBack callBack) {
         this.list = list;
         this.callBack = callBack;
         this.listOld = list;
@@ -38,7 +38,7 @@ public class ThucDonAdapter extends RecyclerView.Adapter<ThucDonAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Monan monan = listOld.get(position);
+        Foods monan = listOld.get(position);
         if (monan == null){
             return;
         } else
@@ -59,9 +59,9 @@ public class ThucDonAdapter extends RecyclerView.Adapter<ThucDonAdapter.ViewHold
                 if (strName.isEmpty()) {
                     listOld = list;
                 } else {
-                    List<Monan> listBien = new ArrayList<>();
-                    for (Monan model : list) {
-                        if (model.getTenmon().toLowerCase().contains(strName.toLowerCase())) {
+                    List<Foods> listBien = new ArrayList<>();
+                    for (Foods model : list) {
+                        if (model.getName().toLowerCase().contains(strName.toLowerCase())) {
                             listBien.add(model);
                         }
                     }
@@ -74,7 +74,7 @@ public class ThucDonAdapter extends RecyclerView.Adapter<ThucDonAdapter.ViewHold
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                listOld = (List<Monan>) results.values;
+                listOld = (List<Foods>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -91,9 +91,9 @@ public class ThucDonAdapter extends RecyclerView.Adapter<ThucDonAdapter.ViewHold
             anh = binding.imgImage;
             view = binding.layout;
         }
-        void initData(Monan monan){
-            name.setText(monan.getTenmon());
-            anh.setImageResource(Integer.parseInt(monan.getAnh()));
+        void initData(Foods monan){
+            name.setText(monan.getName());
+            anh.setImageResource(Integer.parseInt(monan.getImage()));
             view.setOnClickListener(v -> callBack.OnClick(monan));
         }
 

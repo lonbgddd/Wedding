@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -20,10 +19,9 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.wedding.BaseFragment;
-import com.example.wedding.Domain.Monan;
+import com.example.wedding.Domain.Foods;
 import com.example.wedding.Domain.Thietlap;
 import com.example.wedding.Helper.Sqldatabase;
-import com.example.wedding.R;
 import com.example.wedding.dao.MonanDao;
 import com.example.wedding.dao.ThietLapDao;
 import com.example.wedding.databinding.FragmentThucdonBinding;
@@ -95,7 +93,7 @@ public class ThucDonFragment extends BaseFragment implements ThucDonAdapter.Call
     }
 
     @Override
-    public void OnClick(Monan monan) {
+    public void OnClick(Foods monan) {
         
         final Dialog dialog = new Dialog(requireContext());
         SaleBottomBinding bindingDialog = SaleBottomBinding.inflate(LayoutInflater.from(requireContext()));
@@ -107,17 +105,17 @@ public class ThucDonFragment extends BaseFragment implements ThucDonAdapter.Call
         layoutParams.gravity = Gravity.BOTTOM;
         window.setAttributes(layoutParams);
 
-        bindingDialog.txTitle.setText(monan.getTenmon());
-        bindingDialog.txDescription.setText(monan.getDanhGia());
-        bindingDialog.imgItem.setImageResource(Integer.parseInt(monan.getAnh()));
+        bindingDialog.txTitle.setText(monan.getName());
+        bindingDialog.txDescription.setText(monan.getReview());
+        bindingDialog.imgItem.setImageResource(Integer.parseInt(monan.getImage()));
         bindingDialog.cancelBtn.setOnClickListener(v -> dialog.cancel());
         bindingDialog.addBtn.setOnClickListener(v -> {
             ThietLapDao thietLapDao = new ThietLapDao(requireContext());
             Thietlap thietlap = new Thietlap();
             thietlap.setId_thietlap(2);
-            thietlap.setTitle(monan.getTenmon());
-            thietlap.setReview( monan.getDanhGia());
-            thietlap.setAnh(monan.getAnh());
+            thietlap.setTitle(monan.getName());
+            thietlap.setReview( monan.getReview());
+            thietlap.setAnh(monan.getImage());
             thietLapDao.insert(thietlap);
             Toast.makeText(requireContext(), "Thiết lập thành công", Toast.LENGTH_SHORT).show();
             dialog.cancel();

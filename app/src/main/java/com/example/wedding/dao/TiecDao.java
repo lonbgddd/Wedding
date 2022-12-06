@@ -65,7 +65,7 @@ public class TiecDao {
             tiec.Id_tiec = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Id_tiec")));
             tiec.Tentiec = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Tentiec")));
             tiec.Tenkhonggian = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Tenkhonggian")));
-            tiec.Monan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Monan")));
+            tiec.Monan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Foods")));
             list.add(tiec);
         }
         return list;

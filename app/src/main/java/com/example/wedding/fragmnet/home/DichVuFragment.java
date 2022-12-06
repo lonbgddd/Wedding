@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,9 +17,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.wedding.BaseFragment;
-import com.example.wedding.Domain.Dichvu;
+import com.example.wedding.Domain.Service;
 import com.example.wedding.Domain.Thietlap;
-import com.example.wedding.R;
 import com.example.wedding.dao.DichvuDao;
 import com.example.wedding.dao.ThietLapDao;
 import com.example.wedding.databinding.FragmentDichvuBinding;
@@ -73,7 +71,7 @@ public class DichVuFragment extends BaseFragment implements DichVuAdapter.CallBa
     }
 
     @Override
-    public void OnClick(Dichvu dichvu) {
+    public void OnClick(Service dichvu) {
         final Dialog dialog = new Dialog(requireContext());
         SaleBottomBinding bindingDialog = SaleBottomBinding.inflate(LayoutInflater.from(requireContext()));
         dialog.setContentView(bindingDialog.getRoot());
@@ -84,13 +82,13 @@ public class DichVuFragment extends BaseFragment implements DichVuAdapter.CallBa
         layoutParams.gravity = Gravity.BOTTOM;
         window.setAttributes(layoutParams);
 
-        bindingDialog.txTitle.setText(dichvu.getKhonggiantiec());
-        bindingDialog.txDescription.setText(dichvu.getTen());
-        bindingDialog.imgItem.setImageResource(Integer.parseInt(dichvu.getAnh()));
+        bindingDialog.txTitle.setText(dichvu.getReview());
+        bindingDialog.txDescription.setText(dichvu.getDate());
+        bindingDialog.imgItem.setImageResource(Integer.parseInt(dichvu.getImage()));
         bindingDialog.cancelBtn.setOnClickListener(v -> dialog.cancel());
         bindingDialog.addBtn.setOnClickListener(v -> {
             ThietLapDao thietLapDao = new ThietLapDao(requireContext());
-            thietLapDao.insert(new Thietlap(0,dichvu.getKhonggiantiec(), dichvu.getTen(), dichvu.getAnh()));
+            thietLapDao.insert(new Thietlap(0,dichvu.getReview(), dichvu.getName(), dichvu.getImage()));
             Toast.makeText(requireContext(), "Thiết lập thành công", Toast.LENGTH_SHORT).show();
             dialog.cancel();
         });

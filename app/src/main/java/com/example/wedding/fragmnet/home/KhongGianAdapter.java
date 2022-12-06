@@ -1,7 +1,6 @@
 package com.example.wedding.fragmnet.home;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -12,22 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wedding.Domain.Dichvu;
-import com.example.wedding.Domain.Khonggiantiec;
-import com.example.wedding.Domain.Monan;
+import com.example.wedding.Domain.Space;
 import com.example.wedding.databinding.ItemListdvBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class KhongGianAdapter extends RecyclerView.Adapter<KhongGianAdapter.ViewHolder> implements Filterable {
-    List<Khonggiantiec> list;
-    List<Khonggiantiec> listOld;
+    List<Space> list;
+    List<Space> listOld;
     CallBack callBack;
     interface CallBack {
-        void OnClick(Khonggiantiec khonggiantiec);
+        void OnClick(Space khonggiantiec);
     }
-    public KhongGianAdapter(List<Khonggiantiec> list, CallBack callBack) {
+    public KhongGianAdapter(List<Space> list, CallBack callBack) {
         this.list = list;
         this.listOld = list;
         this.callBack = callBack;
@@ -41,7 +38,7 @@ public class KhongGianAdapter extends RecyclerView.Adapter<KhongGianAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Khonggiantiec khonggiantiec = listOld.get(position);
+            Space khonggiantiec = listOld.get(position);
             if (khonggiantiec == null){
                 return;
             } else
@@ -62,9 +59,9 @@ public class KhongGianAdapter extends RecyclerView.Adapter<KhongGianAdapter.View
                 if (strName.isEmpty()) {
                     listOld = list;
                 } else {
-                    List<Khonggiantiec> listBien = new ArrayList<>();
-                    for (Khonggiantiec model : list) {
-                        if (model.getTenkhonggian().toLowerCase().contains(strName.toLowerCase())) {
+                    List<Space> listBien = new ArrayList<>();
+                    for (Space model : list) {
+                        if (model.getName().toLowerCase().contains(strName.toLowerCase())) {
                             listBien.add(model);
                         }
                     }
@@ -77,7 +74,7 @@ public class KhongGianAdapter extends RecyclerView.Adapter<KhongGianAdapter.View
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                listOld = (List<Khonggiantiec>) results.values;
+                listOld = (List<Space>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -93,9 +90,9 @@ public class KhongGianAdapter extends RecyclerView.Adapter<KhongGianAdapter.View
             anh = binding.imgImage;
             layout = binding.layout;
         }
-        void initData(Khonggiantiec monan){
-            name.setText(monan.getTenkhonggian());
-            anh.setImageResource(Integer.parseInt(monan.getAnh()));
+        void initData(Space monan){
+            name.setText(monan.getName());
+            anh.setImageResource(Integer.parseInt(monan.getImage()));
             layout.setOnClickListener(v -> callBack.OnClick(monan));
         }
     }
